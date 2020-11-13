@@ -1,13 +1,15 @@
+from gevent import monkey
+monkey.patch_all()
+
 from TikTokApi import TikTokApi
-from TikTokApi.browser import set_async
+import asyncio
 import time
 import matplotlib.pyplot as plt
 from scipy import stats
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_restful import Api, Resource
 
 #Setting the TikTok API
-set_async()
 tiktokapi = TikTokApi()
 
 #Acquiring the videos and arranging the view numbers in a list (reversing as the original order is newer first)
@@ -66,7 +68,7 @@ def print_model(x, slope, intercept, video_views, x_filtered, video_views_filter
      plt.ylabel('Number of views')
      plt.legend()
 
-     #Printing datanumpy
+     #Printing data
      print("The odds to go viral are " + str(int(odds_of_virality*100)) + "%")
      if (next_video_views>0):
          print("The predicted views for the next video are " + str(next_video_views))
@@ -91,6 +93,7 @@ def create_data(x, video_views, x_filtered, video_views_filtered, slope, interce
             "outlier_senitivity":outlier_sensitivity
             }
     return data
+
 
 #The main function which calls all other functions
 def model(user):
