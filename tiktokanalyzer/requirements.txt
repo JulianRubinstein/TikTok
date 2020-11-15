@@ -1,5 +1,0 @@
-Flask
-flask_restful
-TikTokApi
-scipy
-matplotlib
