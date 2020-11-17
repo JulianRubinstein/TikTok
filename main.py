@@ -13,11 +13,11 @@ class Data(Resource):
 
        try:
            userinfo = model(user)
-           return userinfo
+           return {"user_info":userinfo, "message":"succesful", "status_code":200}
        except KeyError:
-           return "No such user"
+           return {"message":"No such user", "status_code":404}
        except:
-           return "An error has occured"
+           return {"message":"The model has failed to fit", "status_code":500}
 
 api.add_resource(Data, "/")
 
