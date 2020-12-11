@@ -1,9 +1,10 @@
-import time
 from scipy import stats
-from extract_data import extract_data
+import time
 
-#Reject outlier videos and videos from last two days
+from data_extraction import extract_data
+
 def reject_outliers(video_views, video_times, outlier_sensitivity, videos_for_virality, num_days):
+    #Reject outlier videos and videos from last two days
 
     #Internal variables
     current_time = time.time()
@@ -92,5 +93,4 @@ def model(user):
     slope, intercept, p_value, next_video_views, x = fit_model(x_filtered, video_views_filtered, video_views)
     data = create_data(x, video_views, x_filtered, video_views_filtered, slope, intercept, p_value, next_video_views, odds_of_virality, outlier_sensitivity, followers, total_likes, user_id)
 
-    #Returning the data
     return data

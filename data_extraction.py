@@ -1,7 +1,10 @@
 import requests
 
-#Acquiring the videos and arranging the view numbers in a list (reversing as the original order is newer first)
+
 def extract_data(user, videos_num):
+    """Acquiring the videos and arranging
+    the view numbers in a list (reversing as
+    the original order is newer first)"""
 
     url = "https://tiktok.p.rapidapi.com/live/user/feed"
     querystring = {"username":user, "limit":videos_num}

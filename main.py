@@ -8,6 +8,7 @@ api = Api(app)
 class Data(Resource):
    def post(self):
        #Requesting a user from the client and returning the dataset
+       
        postedData = request.get_json()
        user = postedData["user"]
 
@@ -22,4 +23,4 @@ class Data(Resource):
 api.add_resource(Data, "/")
 
 if __name__=="__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
